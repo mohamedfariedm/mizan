@@ -47,8 +47,8 @@ const Hero = () => {
               src="/hero-main.svg"
               alt="Mizan app interface"
               width={500}
-              height={500}
-              className="w-1/2 h-1/2"
+              height={424.29}
+              className=""
               priority
               unoptimized
             />
@@ -64,7 +64,7 @@ const Hero = () => {
             alt="Saudi Central Bank"
             width={200}
             height={75}
-            className="h-16 w-auto"
+            className=""
             unoptimized
           />
           <Image
@@ -72,7 +72,7 @@ const Hero = () => {
             alt="Capital Market Authority"
             width={200}
             height={75}
-            className="h-16 w-auto"
+            className=""
             unoptimized
           />
         </div>

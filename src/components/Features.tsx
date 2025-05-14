@@ -152,7 +152,7 @@ export default function Features() {
             alt="Security illustration"
             width={400}
             height={400}
-            className="w-full max-w-sm lg:max-w-md"
+            className=""
             unoptimized
           />
         </div>

@@ -1,9 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
 import { X } from "lucide-react";
+import { useLocale } from "next-intl";
 
 const links = [
   { href: "home", label: "Home" },
@@ -14,9 +15,12 @@ const links = [
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Dropdown toggle state
+  const dropdownRef = useRef<HTMLDivElement | null>(null); // Type the ref as HTMLDivElement
   const t = useTranslations("Navbar");
   const pathname = usePathname();
   const router = useRouter();
+  const locale = useLocale();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -51,6 +55,29 @@ const Navbar = () => {
     }
     setIsMenuOpen(false);
   };
+
+  const handleLanguageChange = (lang: string) => {
+    console.log(pathname);
+    
+    router.push(pathname.includes("/ar") ? pathname.replace("/ar", `/${lang}`) : pathname.replace("/en", `/${lang}`));
+    setIsDropdownOpen(false); // Close dropdown after selecting a language
+  };
+
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // Check if the dropdownRef exists and if the click is outside of it
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false); // Close dropdown if clicked outside
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav className="relative">
@@ -96,10 +123,55 @@ const Navbar = () => {
                   {t(label)}
                 </li>
               ))}
+              {/* Language switcher button */}
+              <button
+                className={`inline-flex w-10 h-10 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-gray-200`}
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)} // Toggle the dropdown visibility
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-globe h-5 w-5"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                  <path d="M2 12h20"></path>
+                </svg>
+                <span className="sr-only">Switch language</span>
+              </button>
+              {/* Language dropdown menu */}
+              {isDropdownOpen && (
+                <div
+                  ref={dropdownRef} // Attach ref to the dropdown
+                  className="absolute end-0 mt-2 w-32 bg-white shadow-lg rounded-md z-50"
+                  style={{ top: "100%" }}
+                >
+                  <div
+                    className="cursor-pointer py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => handleLanguageChange("en")}
+                  >
+                    English
+                  </div>
+                  <div
+                    className="cursor-pointer py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => handleLanguageChange("ar")}
+                  >
+                    العربية
+                  </div>
+                </div>
+              )}
             </ul>
           </div>
         </div>
       </div>
+
       <div
         className={`${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
@@ -115,6 +187,21 @@ const Navbar = () => {
               {t(label)}
             </div>
           ))}
+          {/* Language switcher for mobile */}
+          <div className="px-3 py-2">
+            <div
+              className="cursor-pointer py-2 text-charcoal"
+              onClick={() => handleLanguageChange("en")}
+            >
+              English
+            </div>
+            <div
+              className="cursor-pointer py-2 text-primary"
+              onClick={() => handleLanguageChange("ar")}
+            >
+              العربية
+            </div>
+          </div>
         </div>
       </div>
     </nav>
