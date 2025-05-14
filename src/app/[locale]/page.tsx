@@ -11,7 +11,7 @@ export default function Home() {
       <section className="container-main">
         <Navbar />
       </section>
-      <section id="home" className="mt-10 container-main">
+      <section id="home" className="container-main">
         <Hero />
       </section>
       <section id="cta">
