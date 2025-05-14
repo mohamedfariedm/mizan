@@ -46,7 +46,7 @@ const Navbar = () => {
     }
 
     if (pathname !== "/") {
-      router.push("/");
+      // router.push("/");
       setTimeout(() => {
         scrollToSection(sectionId);
       }, 500);

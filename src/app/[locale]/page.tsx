@@ -21,7 +21,7 @@ export default function Home() {
       <section id="features" className="container-main">
         <Features />
       </section>
-            <section id="contactUs" className="container-main bg-gray-100">
+            <section id="ContactUs" className="container-main bg-gray-100">
         <ContactUs  />
       </section>
       <section id="faq">
