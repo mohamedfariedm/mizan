@@ -9,8 +9,8 @@ import { useLocale } from "next-intl";
 const links = [
   { href: "home", label: "Home" },
   { href: "features", label: "Features" },
-  { href: "faq", label: "FAQ" },
   { href: "ContactUs", label: "Contact Us" },
+  { href: "faq", label: "FAQ" },
 ];
 
 const Navbar = () => {
@@ -114,7 +114,7 @@ const Navbar = () => {
             />
           </div>
           <div className="hidden md:block">
-            <ul className="flex space-x-2">
+            <ul className="flex space-x-2 relative">
               {links.map(({ href, label }) => (
                 <li
                   key={href}

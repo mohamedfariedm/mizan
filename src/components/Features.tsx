@@ -148,7 +148,7 @@ export default function Features() {
         </h2>
         <div className="flex justify-center lg:justify-end">
           <Image
-            src={!isRTL ? "/feature5.svg" : "/feature5Ar.svg"}
+            src={!isRTL ? "/3.png" : "/3.png"}
             alt="Security illustration"
             width={400}
             height={400}

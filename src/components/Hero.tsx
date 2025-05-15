@@ -44,7 +44,7 @@ const Hero = () => {
 
           <div className="flex justify-center items-center mb-16">
             <Image
-              src="/hero-main.svg"
+              src="/Mizan.png"
               alt="Mizan app interface"
               width={500}
               height={424.29}
@@ -64,7 +64,7 @@ const Hero = () => {
             alt="Saudi Central Bank"
             width={200}
             height={75}
-            className=""
+            className="brightness-[80%]"
             unoptimized
           />
           <Image
@@ -72,7 +72,7 @@ const Hero = () => {
             alt="Capital Market Authority"
             width={200}
             height={75}
-            className=""
+            className=" brightness-[80%]"
             unoptimized
           />
         </div>
