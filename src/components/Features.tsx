@@ -140,15 +140,15 @@ export default function Features() {
       <div className="bg-gradient-to-b from-green-50 to-transparent flex flex-col lg:flex-row items-center justify-center space-y-8 lg:space-y-0 lg:space-x-12 p-5 pb-0 lg:p-12">
         <h2
           className={cn(
-            "text-3xl lg:text-5xl font-bold text-center lg:text-left md:w-1/3",
-            isRTL && "text-center lg:text-right"
+            "text-3xl lg:text-5xl font-bold text-left lg:text-left md:w-1/3",
+            isRTL && "text-right lg:text-right"
           )}
         >
           {isRTL? t("f5Title") : 
           <>
           Your bank accounts
           <br/>
-          and investments are safe.
+          and investments are safe
           </>
           }
         </h2>
