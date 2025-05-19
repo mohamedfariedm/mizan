@@ -144,7 +144,13 @@ export default function Features() {
             isRTL && "text-center lg:text-right"
           )}
         >
-          {t("f5Title")}
+          {isRTL? t("f5Title") : 
+          <>
+          Your bank accounts
+          <br/>
+          and investments are safe.
+          </>
+          }
         </h2>
         <div className="flex justify-center lg:justify-end">
           <Image
